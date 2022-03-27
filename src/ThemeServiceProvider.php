@@ -15,11 +15,13 @@ class ThemeServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Nova::serving(function (ServingNova $event) {
-            Nova::style('royal-theme', __DIR__.'/../css/theme.css');
-            Nova::style('royal-theme-collapse-css', __DIR__.'/../css/collapse.css');
-            Nova::script('royal-theme-collapse-js', __DIR__.'/../js/collapse.js');
-        });
+        if(config('nova.theme', 'default') === 'royal'){
+            Nova::serving(function (ServingNova $event) {
+                Nova::style('royal-theme', __DIR__.'/../css/theme.css');
+                Nova::style('royal-theme-collapse-css', __DIR__.'/../css/collapse.css');
+                Nova::script('royal-theme-collapse-js', __DIR__.'/../js/collapse.js');
+            });
+        }
     }
 
     /**
